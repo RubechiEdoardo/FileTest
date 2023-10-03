@@ -56,7 +56,7 @@ public class Negozio {
 		}
 		
 		public Iterable<Prodotto> elencoProdotti(){//concede solo la lettura
-			return this.elencoProdotti()
-;		}
+			return this.elencoProdotti();
+		}
 }
  
