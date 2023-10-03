@@ -25,7 +25,7 @@ public class Main {
 		risp=sc.nextLine();
 		switch(risp) {
 		case"1":
-			for(Prodotto p:n.elencoProdotti) {
+			for(Prodotto p:n.elencoProdotti()) {
 				System.out.println("Prodotto: "+p.getNome());
 				System.out.println("Prezzo:   "+p.getPrezzo());
 				System.out.println("Quantità: "+p.getQuantità());
