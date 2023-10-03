@@ -10,41 +10,51 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		//***** SCFRITTURA SU UN FILE *****
-		try {
-			FileWriter fw =new FileWriter("prodotti.csv");//il file viene creato nella stessa cartella del progetto
-			fw.write("Pane;3.50;20\n"); // ogni isctruzione scrive una riga nel file
-			fw.write("Pasta;1.60;45\n");
-			fw.write("Biscotti;4.70;80\n");
-			fw.write("Salame;35;37\n");
-			fw.close(); 		// ricordarsi sempre di chiudere il file
-			System.out.println("File correttamente creato"); 
-		} catch (IOException e) { //subentra solo in caso di eccezione (errore)
-			System.out.println("Si è verificato un errore in fase di creazione file!");
-			e.printStackTrace();
-		}
-
-		//***** LEGGERE DA UN FILE *****
-		File f= new File ("Prodotti.csv");
-		String[] dati;  //si crea un vettore
-		try {
-			Scanner sc = new Scanner (f); // questo tipo di scanner legge direttamente dal file una riga alla volta senza inserire manualmente gli input
-			String riga;
-			while (sc.hasNextLine()) { //hasNextLine = Funzione Booleana. Ripeti finché ci sono altre righe da leggere
-				riga = sc.nextLine();  //Leggi una riga dal file
-				dati=riga.split(";"); //divide la riga usando il carattere nelle parentesi come separatore
-				System.out.println("Trovato prodotto: ");
-				System.out.println("        Nome:     "+dati[0]);
-				System.out.println("        Prezzo:   "+dati[1]);
-				System.out.println("        Quantità: "+dati[2]);
-				System.out.println();
+		Scanner sc=new Scanner (System.in);
+		String risp;
+		Negozio n= new Negozio();
+	do {
+		System.out.println("\n\n\n\n\n\n\n\n\n");
+		System.out.println("Gestione Prodotti\n");
+		System.out.println("1- Visualizza prodotto");
+		System.out.println("2- Carica prodotti");
+		System.out.println("3- Salva prodotto");
+		System.out.println("4- Aggiungi prodotto");
+		System.out.println("\n9- Esci");
+		System.out.println("Inserisci la tua scelta: ");
+		risp=sc.nextLine();
+		switch(risp) {
+		case"1":
+			for(Prodotto p:n.elencoProdotti) {
+				System.out.println("Prodotto: "+p.getNome());
+				System.out.println("Prezzo:   "+p.getPrezzo());
+				System.out.println("Quantità: "+p.getQuantità());
 			}
-			sc.close(); // Chiudi il file
-			System.out.println("\n\nLettura terminata.");
-		} catch (FileNotFoundException e) {
-			System.out.println("Errore lettura.");
-			e.printStackTrace();
+			break;
+		case "2":
+			n.carica("prodotti.csv");
+			break;
+		case "3":
+			n.salva("prodotti.csv");
+			break;
+		case "4":
+			Prodotto nuovoProd=new Prodotto();
+			System.out.print("Inserisci la descrizione: ");
+			nuovoProd.setNome(sc.nextLine());
+			System.out.print("Inserisci il prezzo: ");
+			nuovoProd.setPrezzo(Double.parseDouble(sc.nextLine()));
+			System.out.print("Inserisci la quantità: ");
+			nuovoProd.setQuantità(Integer.parseInt(sc.nextLine()));
+			n.aggiungiProdotto(nuovoProd);
+			break;
+		case "9":
+			System.out.println("Arrivederci...");
+			break;
+		default:
+			System.out.println("Scelta non valida.");
 		}
-	}
 		
+		
+	}while(!risp.equals("9"));
+   }
 }
