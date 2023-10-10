@@ -13,6 +13,7 @@ public class Main {
 		Scanner sc=new Scanner (System.in);
 		String risp;
 		Negozio n= new Negozio();
+		Portfolio a= new Portfolio();
 	do {
 		System.out.println("\n\n\n\n\n\n\n\n\n");
 		System.out.println("Gestione Prodotti\n");
@@ -20,9 +21,14 @@ public class Main {
 		System.out.println("2- Carica prodotti");
 		System.out.println("3- Salva prodotto");
 		System.out.println("4- Aggiungi prodotto");
+		System.out.println("5- Visualizza Clienti");
+		System.out.println("6- Carica Clienti");
+		System.out.println("7- Salva Clienti");
+		System.out.println("8- Aggiungi Clienti");
 		System.out.println("\n9- Esci");
 		System.out.println("Inserisci la tua scelta: ");
 		risp=sc.nextLine();
+		
 		switch(risp) {
 		case"1":
 			for(Prodotto p:n.elencoProdotti()) {
@@ -46,6 +52,29 @@ public class Main {
 			System.out.print("Inserisci la quantità: ");
 			nuovoProd.setQuantità(Integer.parseInt(sc.nextLine()));
 			n.aggiungiProdotto(nuovoProd);
+			break;
+		case "5":
+			for(Cliente c:a.elencoClienti()) {
+				System.out.println("Cognome Cliente: "+c.getCognome());
+				System.out.println("Nome Cliente:    "+c.getNome());
+				System.out.println("Numero Cliente:  "+c.getNumero());
+			}
+			break;
+		case "6":
+			a.carica("clienti.csv");
+			break;
+		case "7":
+			a.salva("clienti.csv");
+			break;
+		case "8":
+			Cliente nuovoCliente=new Cliente();
+			System.out.println("Inserisci il Cognome del Cliente: ");
+			nuovoCliente.setCognome(sc.nextLine());
+			System.out.println("Inserisci il Nome del Cliente: ");
+			nuovoCliente.setNome(sc.nextLine());
+			System.out.println("Inserisci il Numero del Cliente: ");
+			nuovoCliente.setNumero(Integer.parseInt(sc.nextLine()));
+			a.aggiungiCliente(nuovoCliente);
 			break;
 		case "9":
 			System.out.println("Arrivederci...");
