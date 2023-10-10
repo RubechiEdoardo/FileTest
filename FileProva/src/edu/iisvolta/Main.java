@@ -81,9 +81,9 @@ public class Main {
 			break;
 		default:
 			System.out.println("Scelta non valida.");
-		}
-		
-		
+		}		
+		System.out.println("Premi Enter per continuare...");
+		sc.nextLine();
 	}while(!risp.equals("9"));
    }
 }

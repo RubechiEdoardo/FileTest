@@ -22,10 +22,13 @@ public class Portfolio {
 						+ c.getNome()+";"
 						+c.getNumero()+ "\n");
 				fw.close();
-				System.out.println("File creato correttamente");
+				
 			}
-		} catch (IOException e) {
+			System.out.println("File creato correttamente");
+		}
+		catch (Exception e) {
 			// TODO Auto-generated catch block
+			System.out.println("Errore: "+e.getMessage());
 			e.printStackTrace();
 		}
 	}
